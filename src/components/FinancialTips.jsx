@@ -1,11 +1,6 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import Login from "./pages/Login.jsx";
-
-import SignUp from "./pages/SignUp.jsx";
-
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 const financialTips = [
   {
     id: 1,
@@ -73,15 +68,28 @@ const financialTips = [
   },
 ];
 
-function App() {
+export const FinancialTips = () => {
+  const [showQuote, setShowQuote] = useState(financialTips[0]);
+
+  useEffect(() => {
+    setInterval(() => {
+      setShowQuote(
+        financialTips[Math.floor(Math.random() * financialTips.length)],
+      );
+    }, 3000);
+  }, []);
+  const { tip, quote, expert } = showQuote;
   return (
-    <div className="wrapper">
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
+    <div
+      className="d-flex flex-column justify-content-center"
+      style={{
+        height: "100%",
+      }}
+    >
+      <h4>{tip}</h4>
+      <div className="fw-bolder">
+        "{quote}" - {expert}
+      </div>
     </div>
   );
-}
-
-export default App;
+};
