@@ -3,6 +3,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
+import { TbLogin } from "react-icons/tb";
+import { SiGnuprivacyguard } from "react-icons/si";
+
 const Header = () => {
   return (
     <Navbar
@@ -17,9 +20,11 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
             <Link className="nav-link" to="/signup">
+              <SiGnuprivacyguard />
               Sign Up
             </Link>
             <Link className="nav-link" to="/">
+              <TbLogin />
               Login
             </Link>
           </Nav>

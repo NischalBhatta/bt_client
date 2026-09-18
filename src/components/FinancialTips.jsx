@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { GiReceiveMoney } from "react-icons/gi";
 const financialTips = [
   {
     id: 1,
@@ -86,6 +87,15 @@ export const FinancialTips = () => {
         height: "100%",
       }}
     >
+      <div className="mb-5">
+        <GiReceiveMoney
+          className="text-success"
+          style={{
+            fontSize: "10rem",
+          }}
+        />
+        <div>Watch Your Money Grow!!</div>
+      </div>
       <h4>{tip}</h4>
       <div className="fw-bolder">
         "{quote}" - {expert}
