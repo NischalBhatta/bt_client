@@ -3,3 +3,7 @@
   background-color: black;
   color: rgba(255, 255, 255, 0.89);
 }
+
+.main {
+  min-height: calc(100vh-10px);
+}
