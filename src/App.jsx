@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Login from "./pages/Login.jsx";
 
-import SignUp from "./pages/SignUp.jsx";
 import DefaultLayout from "./layout/DefaultLayout.jsx";
+import SignUp from "./pages/Signup.jsx";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
       </Routes>

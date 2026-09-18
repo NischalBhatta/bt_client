@@ -23,7 +23,7 @@ const Header = () => {
               <SiGnuprivacyguard />
               Sign Up
             </Link>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/login">
               <TbLogin />
               Login
             </Link>
