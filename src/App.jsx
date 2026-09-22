@@ -8,6 +8,7 @@ import DefaultLayout from "./layout/DefaultLayout.jsx";
 import SignUp from "./pages/Signup.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Transaction from "./pages/Transaction.jsx";
+import Auth from "./auth/Auth.jsx";
 
 function App() {
   return (
@@ -17,9 +18,24 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="dashboard" element={<Dashboard />} />
 
-          <Route path="transaction" element={<Transaction />} />
+          <Route
+            path="dashboard"
+            element={
+              <Auth>
+                <Dashboard />
+              </Auth>
+            }
+          />
+
+          <Route
+            path="transaction"
+            element={
+              <Auth>
+                <Transaction />
+              </Auth>
+            }
+          />
         </Route>
       </Routes>
     </div>
