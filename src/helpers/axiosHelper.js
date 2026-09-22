@@ -10,6 +10,9 @@ const apiProcessor = async ({ method, url, data }) => {
     });
     return response.data;
   } catch (error) {
+    if (error.response?.data) {
+      return error.response.data;
+    }
     return {
       status: error,
       message: error.message,
@@ -26,3 +29,15 @@ export const postNewUser = (data) => {
   };
   return apiProcessor(obj);
 };
+
+//Login User
+export const loginUser = (data) => {
+  const obj = {
+    method: "post",
+    url: apiEp + "/users/login",
+    data,
+  };
+  return apiProcessor(obj);
+};
+
+//

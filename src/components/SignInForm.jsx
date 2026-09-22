@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
-import { postNewUser } from "../helpers/axiosHelper";
+import { loginUser, postNewUser } from "../helpers/axiosHelper";
 
 export const SignInForm = () => {
   const [form, setForm] = useState({});
@@ -36,6 +36,15 @@ export const SignInForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
+
+    const pendingReq = loginUser(form);
+
+    toast.promise(pendingReq, {
+      pending: "Please wait ....",
+    });
+    const { status, message, user, accessJWT } = await pendingReq;
+    toast[status](message);
+    console.log(user, accessJWT);
   };
   return (
     <div className="border rounded p-4">
