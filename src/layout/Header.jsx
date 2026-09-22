@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import { TbLogin } from "react-icons/tb";
 import { SiGnuprivacyguard } from "react-icons/si";
+import { RiDashboard2Fill } from "react-icons/ri";
+import { FaPiggyBank } from "react-icons/fa6";
 
 const Header = () => {
   return (
@@ -26,6 +28,14 @@ const Header = () => {
             <Link className="nav-link" to="/login">
               <TbLogin />
               Login
+            </Link>
+            <Link className="nav-link" to="/dashboard">
+              <RiDashboard2Fill />
+              Dashboard
+            </Link>
+            <Link className="nav-link" to="/transaction">
+              <FaPiggyBank />
+              Transaction
             </Link>
           </Nav>
         </Navbar.Collapse>

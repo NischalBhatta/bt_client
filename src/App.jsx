@@ -6,6 +6,8 @@ import Login from "./pages/Login.jsx";
 
 import DefaultLayout from "./layout/DefaultLayout.jsx";
 import SignUp from "./pages/Signup.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Transaction from "./pages/Transaction.jsx";
 
 function App() {
   return (
@@ -13,8 +15,11 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
-          <Route path="login" element={<Login />} />
+          <Route index element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="dashboard" element={<Dashboard />} />
+
+          <Route path="transaction" element={<Transaction />} />
         </Route>
       </Routes>
     </div>
