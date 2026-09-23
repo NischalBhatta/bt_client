@@ -8,7 +8,11 @@ import { SiGnuprivacyguard } from "react-icons/si";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaPiggyBank } from "react-icons/fa6";
 
+import { UserContext, useUser } from "../context/UserContext.jsx";
+
 const Header = () => {
+  const data = useUser();
+  console.log(data);
   return (
     <Navbar
       collapseOnSelect

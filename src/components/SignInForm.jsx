@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
-import { loginUser, postNewUser } from "../helpers/axiosHelper";
+import { loginUser, postNewUser } from "../helpers/axiosHelper.js";
+import { useUser } from "../context/UserContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const SignInForm = () => {
+  const navigate = useNavigate();
+  const { user, setUser } = useUser();
   const [form, setForm] = useState({});
+
+  useEffect(() => {
+    if (user?._id) {
+      navigate("/dashboard");
+    }
+  }, [user]);
 
   const fields = [
     {
@@ -42,9 +52,13 @@ export const SignInForm = () => {
     toast.promise(pendingReq, {
       pending: "Please wait ....",
     });
-    const { status, message, user, accessJWT } = await pendingReq;
+    const res = await pendingReq;
+    const { status, message, user, accessJWT } = res;
     toast[status](message);
-    console.log(user, accessJWT);
+
+    if (status === "success") {
+      setUser(user);
+    }
   };
   return (
     <div className="border rounded p-4">
