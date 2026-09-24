@@ -11,8 +11,14 @@ import { FaPiggyBank } from "react-icons/fa6";
 import { UserContext, useUser } from "../context/UserContext.jsx";
 
 const Header = () => {
-  const data = useUser();
-  console.log(data);
+  const { setUser } = useUser();
+  // const data = useUser();
+  const handleonLogout = () => {
+    alert("Logout successfully");
+    localStorage.removeItem("accessJWT");
+    setUser();
+  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -40,6 +46,9 @@ const Header = () => {
             <Link className="nav-link" to="/transaction">
               <FaPiggyBank />
               Transaction
+            </Link>
+            <Link className="nav-link" onClick={handleonLogout} to="/logout">
+              Logout
             </Link>
           </Nav>
         </Navbar.Collapse>
