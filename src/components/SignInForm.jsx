@@ -58,6 +58,7 @@ export const SignInForm = () => {
 
     if (status === "success") {
       setUser(user);
+      localStorage.setItem("accessJWT", accessJWT);
     }
   };
   return (
