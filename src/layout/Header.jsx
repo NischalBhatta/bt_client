@@ -11,7 +11,7 @@ import { FaPiggyBank } from "react-icons/fa6";
 import { UserContext, useUser } from "../context/UserContext.jsx";
 
 const Header = () => {
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
   // const data = useUser();
   const handleonLogout = () => {
     alert("Logout successfully");
@@ -31,25 +31,36 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" to="/signup">
-              <SiGnuprivacyguard />
-              Sign Up
-            </Link>
-            <Link className="nav-link" to="/login">
-              <TbLogin />
-              Login
-            </Link>
-            <Link className="nav-link" to="/dashboard">
-              <RiDashboard2Fill />
-              Dashboard
-            </Link>
-            <Link className="nav-link" to="/transaction">
-              <FaPiggyBank />
-              Transaction
-            </Link>
-            <Link className="nav-link" onClick={handleonLogout} to="/logout">
-              Logout
-            </Link>
+            {user?._id ? (
+              <>
+                <Link className="nav-link" to="/dashboard">
+                  <RiDashboard2Fill />
+                  Dashboard
+                </Link>
+                <Link className="nav-link" to="/transaction">
+                  <FaPiggyBank />
+                  Transaction
+                </Link>
+                <Link
+                  className="nav-link"
+                  onClick={handleonLogout}
+                  to="/logout"
+                >
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link" to="/signup">
+                  <SiGnuprivacyguard />
+                  Sign Up
+                </Link>
+                <Link className="nav-link" to="/login">
+                  <TbLogin />
+                  Login
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
