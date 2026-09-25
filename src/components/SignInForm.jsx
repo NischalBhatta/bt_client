@@ -5,18 +5,22 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { loginUser, postNewUser } from "../helpers/axiosHelper.js";
 import { useUser } from "../context/UserContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const SignInForm = () => {
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const [form, setForm] = useState({});
 
+  const goTo = location?.state?.from?.pathname || "/dashboard";
+
   useEffect(() => {
     if (user?._id) {
-      navigate("/dashboard");
+      navigate(goTo);
     }
-  }, [user]);
+  }, [user?._id, navigate, goTo]);
 
   const fields = [
     {
