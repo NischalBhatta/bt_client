@@ -4,9 +4,18 @@ import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { postNewUser } from "../helpers/axiosHelper";
+import useForm from "../hooks/useForm.js";
+// import useForm from "../hooks/useForm";
+
+const initialState = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export const SignUpForm = () => {
-  const [form, setForm] = useState({});
+  const { form, setForm, handleOnChange } = useForm(initialState);
 
   const fields = [
     {
@@ -39,13 +48,13 @@ export const SignUpForm = () => {
     },
   ];
 
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setForm({
+  //     ...form,
+  //     [name]: value,
+  //   });
+  // };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
