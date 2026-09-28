@@ -9,12 +9,11 @@ const Transaction = () => {
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded ">
-        <Col md={6}>
+        <Col>
           <TransactionForm />
           <hr />
           <TransactionTable />
         </Col>
-        <Col md={6}></Col>
       </Row>
     </Container>
   );
