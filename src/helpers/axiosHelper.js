@@ -47,7 +47,7 @@ export const loginUser = (data) => {
   return apiProcessor(obj);
 };
 //Get User
-export const getUser = (data) => {
+export const getUser = () => {
   const obj = {
     method: "get",
     url: apiEp + "/users",
@@ -69,6 +69,18 @@ export const addTransaction = (data) => {
       Authorization: getAccessJWT(),
     },
     data,
+  };
+  return apiProcessor(obj);
+};
+
+//Get User
+export const fetchTransaction = () => {
+  const obj = {
+    method: "get",
+    url: apiEp + "/transactions",
+    headers: {
+      Authorization: getAccessJWT(),
+    },
   };
   return apiProcessor(obj);
 };

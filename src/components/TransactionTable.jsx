@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Table from "react-bootstrap/Table";
 
 function TransactionTable() {
+  //   useEffect(() => {}, []);
   return (
     <Table striped bordered hover>
       <thead>
