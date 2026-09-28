@@ -25,6 +25,8 @@ const apiProcessor = async ({ method, url, data, headers }) => {
   }
 };
 
+//User API Call
+
 //Post New User
 export const postNewUser = (data) => {
   const obj = {
@@ -56,4 +58,17 @@ export const getUser = (data) => {
   return apiProcessor(obj);
 };
 
-//
+//Transaction API Call
+
+//Insert New transaction
+export const addTransaction = (data) => {
+  const obj = {
+    method: "post",
+    url: apiEp + "/transactions",
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+    data,
+  };
+  return apiProcessor(obj);
+};

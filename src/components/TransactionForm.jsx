@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import Button from "react-bootstrap/Button";
 import useForm from "../hooks/useForm";
+import { toast } from "react-toastify";
+import { addTransaction } from "../helpers/axiosHelper";
 
 const initialState = {
   type: "",
@@ -14,10 +16,13 @@ const initialState = {
 const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+    const { status, message } = await addTransaction(form);
+    toast[status](message);
+    status === "success" && setForm(initialState);
   };
+
   const fields = [
     {
       label: "Title",
