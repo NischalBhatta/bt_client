@@ -8,7 +8,7 @@ import { useUser } from "../context/UserContext";
 
 function TransactionTable() {
   const [displayTrans, setDisplayTrans] = useState([]);
-  const { transaction } = useUser();
+  const { transaction, toggleMode } = useUser();
   useEffect(() => {
     setDisplayTrans(transaction);
   }, [transaction]);
@@ -33,7 +33,7 @@ function TransactionTable() {
           <Form.Control type="text" onChange={handleOnSearch} />
         </div>
         <div>
-          <Button>
+          <Button onClick={() => toggleMode(true)}>
             <FaPlus /> Add new transaction
           </Button>
         </div>

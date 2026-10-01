@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import TransactionForm from "../components/TransactionForm";
 import TransactionTable from "../components/TransactionTable";
 import { useUser } from "../context/UserContext";
+import CustomModal from "../components/CustomModal";
 
 const Transaction = () => {
   const { getTransaction } = useUser();
@@ -15,7 +16,9 @@ const Transaction = () => {
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded ">
         <Col>
-          <TransactionForm />
+          <CustomModal>
+            <TransactionForm />
+          </CustomModal>
           <hr />
           <TransactionTable />
         </Col>

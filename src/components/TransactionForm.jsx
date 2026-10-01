@@ -16,7 +16,7 @@ const initialState = {
 
 const TransactionForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
-  const { getTransaction } = useUser();
+  const { getTransaction, toggleMode } = useUser();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,10 @@ const TransactionForm = () => {
     toast[status](message);
     if (status === "success") {
       setForm(initialState);
+      //call the function to fetch all the transaction
       getTransaction();
+      //close the popup modal
+      toggleMode(false);
     }
   };
 
