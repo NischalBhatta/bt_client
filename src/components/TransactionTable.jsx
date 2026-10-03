@@ -9,10 +9,12 @@ import { useUser } from "../context/UserContext";
 function TransactionTable() {
   const [displayTrans, setDisplayTrans] = useState([]);
   const { transaction, toggleMode } = useUser();
+
+  const [idsToDelete, setIdsToDelete] = useState([]);
   useEffect(() => {
     setDisplayTrans(transaction);
   }, [transaction]);
-  console.log(transaction);
+  // console.log(transaction);
   const balance = displayTrans.reduce((acc, trans) => {
     const amt = Number(trans.amount);
     return trans.type === "income" ? acc + amt : acc - amt;
@@ -25,6 +27,21 @@ function TransactionTable() {
     });
     setDisplayTrans(filteredTrans);
   };
+
+  const handleOnSelect = (e) => {
+    const { checked, name, value } = e.target;
+    console.log(checked, value);
+    if (value === "all") {
+      console.log("all selected");
+    }
+    if (checked) {
+      setIdsToDelete([...idsToDelete, value]);
+    } else {
+      setIdsToDelete(idsToDelete(id >= id !== value));
+    }
+    return;
+  };
+  console.log(idsToDelete);
   return (
     <>
       <div className="d-flex justify-content-between pt-3 mb-4">
@@ -37,6 +54,9 @@ function TransactionTable() {
             <FaPlus /> Add new transaction
           </Button>
         </div>
+      </div>
+      <div>
+        <Form.Check label="Select All " value="all" onChange={handleOnSelect} />
       </div>
       <Table striped bordered hover>
         <thead>
@@ -53,8 +73,15 @@ function TransactionTable() {
             displayTrans.map((t, i) => (
               <tr key={t._id}>
                 <td>{i + 1}</td>
+                <td>
+                  <Form.Check
+                    label={t.createdAt.split("T")[0]}
+                    value={t._id}
+                    onChange={handleOnSelect}
+                  />
+                </td>
                 <td>{t.title}</td>
-                <td>{t.createdAt.split("T")[0]}</td>
+
                 {t.type === "expenses" && (
                   <>
                     <td className="out">${t.amount}</td>
