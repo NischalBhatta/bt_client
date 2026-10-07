@@ -6,10 +6,11 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { useUser } from "../context/UserContext";
 import { deleteTransaction } from "../helpers/axiosHelper";
+import { toast } from "react-toastify";
 
 function TransactionTable() {
   const [displayTrans, setDisplayTrans] = useState([]);
-  const { transaction, toggleMode } = useUser();
+  const { transaction, toggleMode, getTransaction } = useUser();
 
   const [idsToDelete, setIdsToDelete] = useState([]);
   useEffect(() => {
@@ -54,8 +55,13 @@ function TransactionTable() {
         `Are you sure you want to delete ${idsToDelete.length} transactions `,
       )
     ) {
-      const result = await deleteTransaction(idsToDelete);
-      console.log(result);
+      const pending = deleteTransaction(idsToDelete);
+      toast.promise(pending, {
+        pending: "Please wait ....",
+      });
+      const { status, message } = await pending;
+      toast[status](message);
+      status === "success" && getTransaction();
     }
   };
   return (
