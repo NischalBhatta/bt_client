@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const SignInForm = () => {
   const location = useLocation();
-  console.log(location);
+
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const [form, setForm] = useState({});
@@ -49,7 +49,6 @@ export const SignInForm = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
 
     const pendingReq = loginUser(form);
 

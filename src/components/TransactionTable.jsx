@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { FaPlus } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
@@ -16,7 +16,7 @@ function TransactionTable() {
   useEffect(() => {
     setDisplayTrans(transaction);
   }, [transaction]);
-  // console.log(transaction);
+
   const balance = displayTrans.reduce((acc, trans) => {
     const amt = Number(trans.amount);
     return trans.type === "income" ? acc + amt : acc - amt;
@@ -32,10 +32,7 @@ function TransactionTable() {
 
   const handleOnSelect = (e) => {
     const { checked, name, value } = e.target;
-    console.log(checked, value);
     if (value === "all") {
-      console.log("all selected");
-      // checked?setIdsToDelete([...idsToDelete, value]):setIdsToDelete(idsToDelete(id >= id !== value))
       checked
         ? setIdsToDelete(displayTrans.map((item) => item._id))
         : setIdsToDelete([]);
@@ -47,7 +44,6 @@ function TransactionTable() {
       setIdsToDelete(idsToDelete.filter((id) => id !== value));
     }
   };
-  // console.log(idsToDelete);
 
   const handleOnDelete = async () => {
     if (

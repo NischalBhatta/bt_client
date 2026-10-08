@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const handleOnChange = ({ e, form, setForm }) => {
   const { name, value } = e.target;

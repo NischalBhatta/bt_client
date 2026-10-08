@@ -1,17 +1,12 @@
-import React from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-import SignUpForm from "../components/SignUpForm";
-import { FinancialTips } from "../components/FinancialTips";
+
 import { BsGraphUpArrow } from "react-icons/bs";
 import { BsGraphDownArrow } from "react-icons/bs";
 import SignInForm from "../components/SignInForm";
-import { useUser } from "../context/UserContext";
 
 const Login = () => {
-  // const {user, setUser} = useUser();
-
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded ">
