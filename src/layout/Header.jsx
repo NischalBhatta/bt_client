@@ -9,14 +9,17 @@ import { RiDashboard2Fill } from "react-icons/ri";
 import { FaPiggyBank } from "react-icons/fa6";
 
 import { UserContext, useUser } from "../context/UserContext.jsx";
+import { useState } from "react";
 
 const Header = () => {
   const { user, setUser } = useUser();
-  // const data = useUser();
+
+  const [showMenu, setShowMenu] = useState(false);
   const handleonLogout = () => {
     alert("Logout successfully");
     localStorage.removeItem("accessJWT");
     setUser();
+    setShowMenu(false);
   };
 
   return (
@@ -25,27 +28,37 @@ const Header = () => {
       expand="lg"
       variant="dark"
       className="bg-body-dark"
+      expanded={showMenu}
     >
       <Container>
-        <Navbar.Brand href="#home">Budget Tracker</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Brand as={Link} to="/">
+          Budget Tracker
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => setShowMenu(true)}
+        />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
             {user?._id ? (
               <>
-                <Link className="nav-link" to="/dashboard">
+                <Link
+                  onClick={() => setShowMenu(true)}
+                  className="nav-link"
+                  to="/dashboard"
+                >
                   <RiDashboard2Fill />
                   Dashboard
                 </Link>
-                <Link className="nav-link" to="/transaction">
+                <Link
+                  onClick={() => setShowMenu(true)}
+                  className="nav-link"
+                  to="/transaction"
+                >
                   <FaPiggyBank />
                   Transaction
                 </Link>
-                <Link
-                  className="nav-link"
-                  onClick={handleonLogout}
-                  to="/logout"
-                >
+                <Link className="nav-link" onClick={handleonLogout} to="/login">
                   Logout
                 </Link>
               </>
