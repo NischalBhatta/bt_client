@@ -5,23 +5,23 @@ import CustomKPI from "../components/CustomKPI";
 import DoughnutChart from "../components/charts/DoughnutChart";
 import BarChart from "../components/charts/BarChart";
 import LineChart from "../components/charts/LineChart";
+import balanceIcon from "../assets/balanceIcon.png";
+import incomeIcon from "../assets/incomeIcon.png";
+import expenseIcon from "../assets/expenseIcon.png";
 
 const DashboardCharts = () => {
   return (
     <>
       {/* A Row of balance, Income and expenses KPI */}
       <Row>
-        <Col>
-          {/* Balance KPI */}
-          <CustomKPI />
+        <Col md={4}>
+          <CustomKPI iconSrc={balanceIcon} bgColor="warning" />
         </Col>
-        <Col>
-          {/* Income KPI */}
-          <CustomKPI />
+        <Col md={4}>
+          <CustomKPI iconSrc={incomeIcon} bgColor="success" />
         </Col>
-        <Col>
-          {/* Expenses KPI */}
-          <CustomKPI />
+        <Col md={4}>
+          <CustomKPI iconSrc={expenseIcon} bgColor="danger" />
         </Col>
       </Row>
       {/* A row of Bar graph and Doughnut Graph */}
