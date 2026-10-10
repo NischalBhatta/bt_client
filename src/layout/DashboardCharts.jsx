@@ -72,10 +72,16 @@ const DashboardCharts = () => {
       {/* A row of income and expenses line graph */}
       <Row>
         <Col md={6}>
-          <LineChart />
+          <LineChart
+            data={dashboardData.income.lineData}
+            options={dashboardData.income.options}
+          />
         </Col>
         <Col md={6}>
-          <LineChart />
+          <LineChart
+            data={dashboardData.expense.lineData}
+            options={dashboardData.expense.options}
+          />
         </Col>
       </Row>
     </>

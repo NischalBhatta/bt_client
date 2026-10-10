@@ -82,13 +82,14 @@ export const formatChartData = (transactionData) => {
     income: {
       amount: income.amount,
       lineData: {
-        labels: "Income",
+        labels: income.label,
         datasets: [
           {
-            label: income.label,
+            label: "Income",
             data: income.dataset,
             borderColor: income.color,
             backgroundColor: income.color + "30",
+            tension: 0.2,
           },
         ],
       },
@@ -117,13 +118,14 @@ export const formatChartData = (transactionData) => {
     expense: {
       amount: expense.amount,
       lineData: {
-        labels: "Expenses",
+        labels: expense.label,
         datasets: [
           {
-            label: expense.label,
+            label: "Expenses",
             data: expense.dataset,
             borderColor: expense.color,
             backgroundColor: expense.color + "30",
+            tension: 0.2,
           },
         ],
       },
