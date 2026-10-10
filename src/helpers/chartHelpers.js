@@ -27,10 +27,7 @@ const prepareChartData = (aggregatedResult) => {
   return { labels, incomeData, expenseData };
 };
 
-//
-
 export const formatChartData = (transactionData) => {
-  console.log("first transaction sample:", transactionData[0]);
   transactionData.sort((a, b) => new Date(a.tdate) - new Date(b.tdate));
 
   const incomeRecord = transactionData

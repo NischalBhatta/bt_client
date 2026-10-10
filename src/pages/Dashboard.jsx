@@ -10,6 +10,7 @@ const Dashboard = () => {
         <Col md={6}>
           <h2>Dashboard</h2>
         </Col>
+        <hr />
         <DashboardCharts />
       </Row>
     </Container>

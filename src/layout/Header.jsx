@@ -23,61 +23,67 @@ const Header = () => {
   };
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      variant="dark"
-      className="bg-body-dark"
-      expanded={showMenu}
-    >
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          Budget Tracker
-        </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          onClick={() => setShowMenu(true)}
-        />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto">
-            {user?._id ? (
-              <>
-                <Link
-                  onClick={() => setShowMenu(true)}
-                  className="nav-link"
-                  to="/dashboard"
-                >
-                  <RiDashboard2Fill />
-                  Dashboard
-                </Link>
-                <Link
-                  onClick={() => setShowMenu(true)}
-                  className="nav-link"
-                  to="/transaction"
-                >
-                  <FaPiggyBank />
-                  Transaction
-                </Link>
-                <Link className="nav-link" onClick={handleonLogout} to="/login">
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link className="nav-link" to="/signup">
-                  <SiGnuprivacyguard />
-                  Sign Up
-                </Link>
-                <Link className="nav-link" to="/login">
-                  <TbLogin />
-                  Login
-                </Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        variant="dark"
+        className="bg-body-dark"
+        expanded={showMenu}
+      >
+        <Container>
+          <Navbar.Brand as={Link} to="/">
+            {user.name && <div>Welcome {user.name}!!</div>}
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            onClick={() => setShowMenu(true)}
+          />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ms-auto">
+              {user?._id ? (
+                <>
+                  <Link
+                    onClick={() => setShowMenu(true)}
+                    className="nav-link"
+                    to="/dashboard"
+                  >
+                    <RiDashboard2Fill />
+                    Dashboard
+                  </Link>
+                  <Link
+                    onClick={() => setShowMenu(true)}
+                    className="nav-link"
+                    to="/transaction"
+                  >
+                    <FaPiggyBank />
+                    Transaction
+                  </Link>
+                  <Link
+                    className="nav-link"
+                    onClick={handleonLogout}
+                    to="/login"
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link className="nav-link" to="/signup">
+                    <SiGnuprivacyguard />
+                    Sign Up
+                  </Link>
+                  <Link className="nav-link" to="/login">
+                    <TbLogin />
+                    Login
+                  </Link>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 };
 

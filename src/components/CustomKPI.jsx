@@ -1,9 +1,7 @@
-import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const CustomKPI = ({ iconSrc, kpiType, kpiValue, bgColor = "white" }) => {
-  console.log(kpiValue);
   return (
     <>
       <Row className={"bg-" + bgColor + " rounded text-black p-3 g-2"}>
