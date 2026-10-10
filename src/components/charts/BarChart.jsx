@@ -34,10 +34,12 @@ ChartJS.register(
 //   ],
 // };
 
-const BarChart = () => {
-  <div className="customChart">
-    {/* <Bar data={data} options={options} /> */}
-  </div>;
+const BarChart = ({ data, options }) => {
+  return (
+    <div className="customChart">
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
 export default BarChart;

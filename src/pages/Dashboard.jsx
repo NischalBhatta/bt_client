@@ -6,7 +6,7 @@ import DashboardCharts from "../layout/DashboardCharts";
 const Dashboard = () => {
   return (
     <Container className="p-5">
-      <Row className="bg-transparent p-2 rounded ">
+      <Row className="bg-dark p-5 rounded gap-2">
         <Col md={6}>TODO Dashboard</Col>
         <DashboardCharts />
       </Row>

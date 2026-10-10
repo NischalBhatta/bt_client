@@ -2,7 +2,7 @@ const aggregatedResult = (transaction) => {
   const result = { income: {}, expenses: {} };
 
   transaction.forEach((transaction) => {
-    const date = transaction.tDate.split("T")[0];
+    const date = transaction.tdate.split("T")[0];
     if (transaction.type === "income") {
       result.income[date] = (result.income[date] || 0) + transaction.amount;
     } else if (transaction.type === "expenses") {
@@ -30,19 +30,20 @@ const prepareChartData = (aggregatedResult) => {
 //
 
 export const formatChartData = (transactionData) => {
-  transactionData.sort((a, b) => new Date(a.tDate) - new Date(b.tDate));
+  console.log("first transaction sample:", transactionData[0]);
+  transactionData.sort((a, b) => new Date(a.tdate) - new Date(b.tdate));
 
   const incomeRecord = transactionData
     .filter((record) => record.type === "income")
     .map((record) => ({
-      date: record.tDate.split("T")[0],
+      date: record.tdate.split("T")[0],
       amount: record.amount,
     }));
 
   const expenseRecord = transactionData
     .filter((record) => record.type === "expenses")
     .map((record) => ({
-      date: record.tDate.split("T")[0],
+      date: record.tdate.split("T")[0],
       amount: record.amount,
     }));
 
@@ -50,13 +51,13 @@ export const formatChartData = (transactionData) => {
     amount: incomeRecord.reduce((acc, i) => acc + parseInt(i.amount), 0),
     dataset: incomeRecord.map((i) => i.amount),
     label: incomeRecord.map((i) => i.date),
-    color: "#47c91fd4",
+    color: "#47c911",
   };
   const expense = {
     amount: expenseRecord.reduce((acc, i) => acc + parseInt(i.amount), 0),
     dataset: expenseRecord.map((i) => i.amount),
     label: expenseRecord.map((i) => i.date),
-    color: "#e54444d4",
+    color: "#e54444",
   };
 
   const aggregatedData = aggregatedResult(transactionData);

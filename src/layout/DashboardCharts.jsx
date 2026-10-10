@@ -12,14 +12,20 @@ import { useUser } from "../context/UserContext";
 import { formatChartData } from "../helpers/chartHelpers";
 
 const DashboardCharts = () => {
-  const { transactions, getTransactions } = useUser();
+  const { transaction, getTransaction } = useUser();
 
   const [dashboardData, setDashboardData] = useState(formatChartData([]));
 
   useEffect(() => {
-    if (!Array.isArray(transactions)) return;
-    setDashboardData(formatChartData(transactions));
-  }, [transactions]);
+    getTransaction();
+  }, []);
+
+  useEffect(() => {
+    if (!Array.isArray(transaction)) return;
+
+    const recordsToShow = 10;
+    setDashboardData(formatChartData(transaction.slice(-recordsToShow)));
+  }, [transaction]);
 
   return (
     <>
@@ -52,20 +58,23 @@ const DashboardCharts = () => {
       </Row>
       {/* A row of Bar graph and Doughnut Graph */}
       <Row>
-        <Col>
-          <BarChart />
+        <Col md={6}>
+          <BarChart
+            data={dashboardData.combined.data}
+            options={dashboardData.combined.options}
+          />
         </Col>
 
-        <Col>
-          <DoughnutChart />
+        <Col md={6}>
+          <DoughnutChart data={dashboardData.balance.chartData} />
         </Col>
       </Row>
       {/* A row of income and expenses line graph */}
       <Row>
-        <Col>
+        <Col md={6}>
           <LineChart />
         </Col>
-        <Col>
+        <Col md={6}>
           <LineChart />
         </Col>
       </Row>
