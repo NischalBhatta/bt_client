@@ -33,7 +33,7 @@ const Header = () => {
       >
         <Container>
           <Navbar.Brand as={Link} to="/">
-            {user.name && <div>Welcome {user.name}!!</div>}
+            <h2>Budget Tracker</h2>
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
