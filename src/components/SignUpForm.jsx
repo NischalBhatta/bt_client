@@ -4,6 +4,7 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { postNewUser } from "../helpers/axiosHelper";
 import useForm from "../hooks/useForm.js";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -14,6 +15,7 @@ const initialState = {
 
 export const SignUpForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
+  const navigate = useNavigate();
 
   const fields = [
     {
@@ -46,14 +48,6 @@ export const SignUpForm = () => {
     },
   ];
 
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setForm({
-  //     ...form,
-  //     [name]: value,
-  //   });
-  // };
-
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { confirmPassword, ...rest } = form;
@@ -62,7 +56,15 @@ export const SignUpForm = () => {
     }
     const { status, message } = await postNewUser(rest);
     toast[status](message);
+
+    if (status === "success") {
+      // Clear the form fields back to initial state
+      setForm(initialState);
+      // Navigate to your login route
+      navigate("/login");
+    }
   };
+
   return (
     <div className="border rounded p-4">
       <h4 className="mb-4">SignUp Now!</h4>

@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { TbLogin } from "react-icons/tb";
 import { SiGnuprivacyguard } from "react-icons/si";
@@ -9,12 +9,19 @@ import { RiDashboard2Fill } from "react-icons/ri";
 import { FaPiggyBank } from "react-icons/fa6";
 
 import { UserContext, useUser } from "../context/UserContext.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { user, setUser } = useUser();
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location.pathname]);
+
   const handleonLogout = () => {
     alert("Logout successfully");
     localStorage.removeItem("accessJWT");
